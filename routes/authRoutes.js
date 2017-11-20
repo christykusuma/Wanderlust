@@ -9,14 +9,20 @@ module.exports = (app) => {
 
     // Direct to google again after authentication with returned code
     // Then goes to next function (accessToken)
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get(
+        '/auth/google/callback', 
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/search');
+        }
+    );
 
     // Kills cookie session to logout
     app.get('/api/logout', (req, res) => {
         req.logout();
 
         // Show that there is no existing user
-        res.send(req.user);
+        res.redirect('/');
     });
 
     // Use saved cookie session to fetch id
