@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import GoogleMapSearch from './GoogleMapSearch';
+import GoogleMapSearch from '../containers/GoogleMapSearch';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 // const SurveyNew = () => <h2>SurveyNew</h2>
@@ -19,7 +19,7 @@ class App extends Component {
 		return ( 
 		<div className="container">
 			<BrowserRouter>
-				<div>
+				<div className="container">
 					<Header />
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/search" component={GoogleMapSearch} />

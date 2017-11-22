@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 
-import CityList from '../containers/city-list';
-import MapMarkers from './MapMarkers';
-import CityDetail from '../containers/city-detail';
-
+import MapMarkers from '../components/MapMarkers';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { geolocated, geoPropTypes } from 'react-geolocated';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+// Import submitCity function
+import { submitCity } from '../actions/index';
 
 class GoogleMapSearch extends Component {
 	constructor(props) {
@@ -18,6 +21,9 @@ class GoogleMapSearch extends Component {
 			address: 'New York, NY',
 			latLng: {lat: 40.7127753, lng: -74.0059728}
 		}
+
+		this.handleAddressSubmit = this.handleAddressSubmit.bind(this);
+		this.handleCitySubmit = this.handleCitySubmit.bind(this);
 
 		// Upon change, set state to different address
 		this.onChange = (address) => this.setState({ address })
@@ -35,6 +41,15 @@ class GoogleMapSearch extends Component {
 			.catch(error => console.error(error))
 
 		console.log('Success', this.state.latLng);
+	}
+
+	// Submit city to database - calls action creator
+	handleCitySubmit(event) {
+		this.props.submitCity({
+			name: this.state.address,
+			lat: this.state.latLng.lat,
+			lng: this.state.latLng.lng
+		});
 	}
 
 	render() {
@@ -56,6 +71,10 @@ class GoogleMapSearch extends Component {
 					</table>
 				</form>
 
+				<form onSubmit={this.handleCitySubmit}>
+					<button type="submit" className="btn waves-effect waves-light" >Add City</button>
+				</form>
+
 				<MapMarkers latLng={this.state.latLng}
 				  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
 				  loadingElement={<div style={{ height: `100%` }} />}
@@ -67,4 +86,8 @@ class GoogleMapSearch extends Component {
 	}
 }
 
-export default GoogleMapSearch;
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ submitCity }, dispatch);
+}
+  
+export default connect(null, mapDispatchToProps)(GoogleMapSearch);

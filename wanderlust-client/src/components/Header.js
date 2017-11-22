@@ -4,18 +4,19 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
 	renderContent() {
-		switch (this.props.auth) {
-			case null:
-				return;
-			case false:
-				return (
-					<li><a href ="/auth/google">Login with Google</a></li>
-				);
-			default: 
-				return (
+		if (this.props.auth) {
+			return (
+				<div>
+					<li>Welcome, {this.props.auth.fname} {this.props.auth.lname}.</li>
 					<li><a href ="/api/logout">Logout</a></li>
-				);
+				</div>
+			);
+		}else {
+			return (
+				<li><a href ="/auth/google">Login with Google</a></li>
+			);
 		}
+		
 	}
 
 	render() {

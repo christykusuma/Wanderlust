@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, SELECTED_CITY, FETCH_CITIES } from './types';
 
 // Will automatically call dispatch function
 // Only after it gets a response, it will dispatch action
@@ -14,10 +14,28 @@ export const fetchUser = () => async (dispatch) => {
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-// Fetches city
+// Fetches city data
+export const fetchCities = () => async dispatch => {
+	const res = await axios.get('/api/dashboard');
+
+	dispatch({ type: FETCH_CITIES, payload: res.data});
+};
+
+// Submits city for the specific user
+export const submitCity = city => async (dispatch, getState) => {
+	const user = getState().auth.id
+	const res = await axios.post('/api/dashboard', {
+		...city, 
+		_user: user 
+	});
+
+	dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+// Fetches city from reducers
 export function selectCity(city) {
 	return {
-		type: 'CITY_SELECTED',
+		type: SELECTED_CITY,
 		payload: city
 	};
 };
