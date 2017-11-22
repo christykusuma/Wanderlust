@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { FETCH_USER, SELECTED_CITY, FETCH_CITIES } from './types';
+import { 
+	FETCH_USER, 
+	SELECTED_CITY, 
+	FETCH_CITIES, 
+	FETCH_MARKERS 
+} from './types';
 
 // Will automatically call dispatch function
 // Only after it gets a response, it will dispatch action
@@ -28,6 +33,26 @@ export const submitCity = city => async (dispatch, getState) => {
 		...city, 
 		_user: user 
 	});
+
+	dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+// Fetches marker data 
+export const fetchMarkers= () => async dispatch => {
+	const res = await axios.get('/api/activities');
+
+	dispatch({ type: FETCH_MARKERS, payload: res.data});
+};
+
+// Submits marker for the specific user
+export const submitMarker = marker => async (dispatch, getState) => {
+	const user = getState().auth.id
+	const res = await axios.post('/api/activities', {
+		...marker, 
+		_user: user 
+	});
+
+	console.log(res);
 
 	dispatch({ type: FETCH_USER, payload: res.data });
 };

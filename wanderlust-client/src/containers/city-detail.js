@@ -12,11 +12,12 @@ class CityDetail extends Component {
         return (
             <div>
                 <h4>{this.props.city.name}</h4>
-                <MapMarkers latLng={this.props.city.latLng}
-				  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
-				  loadingElement={<div style={{ height: `100%` }} />}
-				  containerElement={<div style={{ height: `400px` }} />}
-				  mapElement={<div style={{ height: `100%` }} />}
+                <MapMarkers
+                    latLng={this.props.city.latLng}
+				    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
+				    loadingElement={<div style={{ height: `100%` }} />}
+				    containerElement={<div style={{ height: `400px` }} />}
+				    mapElement={<div style={{ height: `100%` }} />}
 				/>
             </div>
         );

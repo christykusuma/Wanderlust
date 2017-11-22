@@ -11,6 +11,9 @@ require('./models/User');
 // Require the city model
 require('./models/City');
 
+// Require marker model
+require('./models/Marker');
+
 require('./services/passport');
 
 const bodyParser = require('body-parser');
@@ -42,6 +45,9 @@ authRoutes(app);
 
 // Require city routes
 require('./routes/cityRoutes')(app);
+
+// Require marker routes
+require('./routes/markerRoutes')(app);
 
 // Dynamic port binding
 const PORT = process.env.PORT || 5000;

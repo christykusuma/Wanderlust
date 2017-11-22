@@ -7,8 +7,8 @@ import { geolocated, geoPropTypes } from 'react-geolocated';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-// Import submitCity function
-import { submitCity } from '../actions/index';
+// Import action functions
+import { submitCity, submitMarker } from '../actions/index';
 
 class GoogleMapSearch extends Component {
 	constructor(props) {
@@ -24,6 +24,7 @@ class GoogleMapSearch extends Component {
 
 		this.handleAddressSubmit = this.handleAddressSubmit.bind(this);
 		this.handleCitySubmit = this.handleCitySubmit.bind(this);
+		this.handleMarkerSubmit = this.handleMarkerSubmit.bind(this);
 
 		// Upon change, set state to different address
 		this.onChange = (address) => this.setState({ address })
@@ -46,6 +47,15 @@ class GoogleMapSearch extends Component {
 	// Submit city to database - calls action creator
 	handleCitySubmit(event) {
 		this.props.submitCity({
+			name: this.state.address,
+			lat: this.state.latLng.lat,
+			lng: this.state.latLng.lng
+		});
+	}
+
+	// Submit marker to database - calls action creator
+	handleMarkerSubmit(event) {
+		this.props.submitMarker({
 			name: this.state.address,
 			lat: this.state.latLng.lat,
 			lng: this.state.latLng.lng
@@ -75,11 +85,16 @@ class GoogleMapSearch extends Component {
 					<button type="submit" className="btn waves-effect waves-light" >Add City</button>
 				</form>
 
-				<MapMarkers latLng={this.state.latLng}
-				  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
-				  loadingElement={<div style={{ height: `100%` }} />}
-				  containerElement={<div style={{ height: `400px` }} />}
-				  mapElement={<div style={{ height: `100%` }} />}
+				<form onSubmit={this.handleMarkerSubmit}>
+					<button type="submit" className="btn waves-effect waves-light" >Add Marker</button>
+				</form>
+
+				<MapMarkers 
+					latLng={this.state.latLng}
+				  	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
+				  	loadingElement={<div style={{ height: `100%` }} />}
+				  	containerElement={<div style={{ height: `400px` }} />}
+				  	mapElement={<div style={{ height: `100%` }} />}
 				/>
 			</div>
 		);
@@ -87,7 +102,7 @@ class GoogleMapSearch extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ submitCity }, dispatch);
+	return bindActionCreators({ submitCity, submitMarker }, dispatch);
 }
   
 export default connect(null, mapDispatchToProps)(GoogleMapSearch);
