@@ -1,17 +1,41 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
+import { compose, withProps, withStateHandlers } from 'recompose';
 
 import Markers from '../containers/Markers';
 
 // Google map with markers from different component
 // Wrap in HOC
-const MapMarkers = withScriptjs(withGoogleMap(props =>
+const MapMarkers = compose(
+  withStateHandlers(() => ({
+    isOpen: false,
+  }), {
+    onToggleOpen: ({ isOpen }) => () => ({
+      isOpen: !isOpen,
+    })
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props =>
   <GoogleMap
     zoom={15}
     center={props.latLng}
   >
-  < Markers />
+  < Markers 
+  onToggleOpen={props.onToggleOpen}
+  isOpen={props.isOpen}
+  />
   </GoogleMap>
-));
+);
+
+// withScriptjs(withGoogleMap(props =>
+//   <GoogleMap
+//     zoom={15}
+//     center={props.latLng}
+//   >
+//   < Markers />
+//   </GoogleMap>
+// ));
 
 export default MapMarkers;
+

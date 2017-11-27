@@ -12,8 +12,6 @@ import CityReducer from './cityReducer';
 // import deleteCityReducer from './cityReducer';
 
 import MarkerReducer from './markerReducer';
-import updateMarkerReducer from './markerReducer';
-// import deleteMarkerReducer from './markerReducer';
 
 // Combines all the reducers
 export default combineReducers({
@@ -27,6 +25,4 @@ export default combineReducers({
 	// updateCity: updateCityReducer,
 	// deleteCity: deleteCityReducer,
 	marker: MarkerReducer, 
-	updateMarker: updateMarkerReducer,
-	// deleteMarker: deleteMarkerReducer
 });

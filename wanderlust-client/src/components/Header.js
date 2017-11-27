@@ -8,8 +8,8 @@ class Header extends Component {
 			return (
 				<div>
 					<li><a href ="/dashboard">Dashboard</a></li>
-					<li><a href ="/activities">Activities</a></li>
-					<li>Welcome, {this.props.auth.fname} {this.props.auth.lname}.</li>
+					<li><a href ="/activities">Wishlist</a></li>
+					<li><a href ="#">Welcome, {this.props.auth.fname} {this.props.auth.lname}.</a></li>
 					<li><a href ="/api/logout">Logout</a></li>
 				</div>
 			);

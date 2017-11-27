@@ -10,7 +10,8 @@ export default function(state = [], action) {
                         lat: marker.lat,
                         lng: marker.lng
                     },
-                    has_been: marker.has_been
+                    has_been: marker.has_been,
+                    _id: marker._id
                 }
             }); 
 		default:

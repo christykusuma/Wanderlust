@@ -24,4 +24,13 @@ module.exports = (app) => {
 
         res.send(cities);
     });
+
+    app.delete('/api/dashboard', requireLogin, async (req, res) => {
+        console.log('city req received', req.query);
+
+        const city = await City.findById( req.query._id );
+
+        city.remove();
+    });
+
 };

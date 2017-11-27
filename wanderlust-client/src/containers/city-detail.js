@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MapMarkers from '../components/MapMarkers';
+import MarkerList from './marker-list';
 
 class CityDetail extends Component {
 
     render() {
         if (!this.props.city) {
-            return <div>Select a city to get started</div>
+            return <h4>Select a city to get started...</h4>
         }
         return (
             <div>
@@ -19,6 +20,9 @@ class CityDetail extends Component {
 				    containerElement={<div style={{ height: `400px` }} />}
 				    mapElement={<div style={{ height: `100%` }} />}
 				/>
+                <MarkerList 
+                    latLng={this.props.city.latLng}
+                />
             </div>
         );
     }

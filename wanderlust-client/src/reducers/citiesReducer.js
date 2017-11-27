@@ -9,7 +9,8 @@ export default function(state = [], action) {
                     latLng: {
                         lat: city.lat,
                         lng: city.lng
-                    }
+                    },
+                    _id: city._id
                 }
             }); 
 		default:

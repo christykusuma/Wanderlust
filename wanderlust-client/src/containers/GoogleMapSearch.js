@@ -7,6 +7,8 @@ import { geolocated, geoPropTypes } from 'react-geolocated';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import '../css/search.css';
+
 // Import action functions
 import { submitCity, submitMarker } from '../actions/index';
 
@@ -71,27 +73,27 @@ class GoogleMapSearch extends Component {
 			<div>
 				<form onSubmit={this.handleAddressSubmit}>
 					<table>
-						<tr>
-							<td><PlacesAutocomplete className="input-field col s6" inputProps={inputProps} /></td>
-							<td><button className="btn waves-effect waves-light" type="submit">Submit</button></td>
+						<tr className="search-bar">
+							<td><PlacesAutocomplete className="input-field" inputProps={inputProps} /></td>
+							<td><button className="btn add-address waves-effect waves-light" type="submit">Submit</button></td>
 						</tr>
 					</table>
 				</form>
 
 				<form onSubmit={this.handleCitySubmit}>
-					<button type="submit" className="btn waves-effect waves-light" >Add City</button>
+					<button type="submit" className="btn add-city waves-effect waves-light" >Add City</button>
 				</form>
 
 				<form onSubmit={this.handleMarkerSubmit}>
-					<button type="submit" className="btn waves-effect waves-light" >Add Marker</button>
+					<button type="submit" className="btn add-marker waves-effect waves-light" >Add Marker</button>
 				</form>
 
 				<MapMarkers 
 					latLng={this.state.latLng}
 				  	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
 				  	loadingElement={<div style={{ height: `100%` }} />}
-				  	containerElement={<div style={{ height: `400px` }} />}
-				  	mapElement={<div style={{ height: `100%` }} />}
+				  	containerElement={<div style={{ height: `735px` }} />}
+				  	mapElement={<div style={{ height: `100%`}} />}
 				/>
 			</div>
 		);

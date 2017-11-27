@@ -5,8 +5,7 @@ import {
 	FETCH_USER, 
 	FETCH_CITIES, 
 	FETCH_MARKERS,
-	SELECTED_CITY, 
-	UPDATE_MARKER
+	SELECTED_CITY
 } from './types';
 
 // Will automatically call dispatch function
@@ -25,6 +24,8 @@ export const fetchUser = () => async (dispatch) => {
 // Fetches city data
 export const fetchCities = () => async dispatch => {
 	const res = await axios.get('/api/dashboard');
+
+	console.log('all the cities', res);
 
 	dispatch({ type: FETCH_CITIES, payload: res.data});
 };
@@ -56,6 +57,16 @@ export const submitCity = city => async (dispatch, getState) => {
 // Update city for the specific user
 
 // Delete city for the specific user
+export const deleteCity = city => async (dispatch) => {
+
+	console.log('current city', city);
+
+	const res = await axios.delete('/api/dashboard', {params: {
+		_id : city._id
+	}});
+
+	console.log('deleted city', res);
+};
 
 // Submits marker for the specific user
 export const submitMarker = marker => async (dispatch, getState) => {
@@ -68,33 +79,27 @@ export const submitMarker = marker => async (dispatch, getState) => {
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-// // Delete marker for the specific user
-// export const deleteMarker = marker => async (dispatch) => {
-// 	const res = await axios.delete('/api/activities', {
-// 		...marker, 
-// 	});
-
-// 	dispatch({ type: FETCH_USER, payload: res.data });
-// };
+// Delete marker for the specific user
+export const deleteMarker = marker => async (dispatch) => {
+	const res = await axios.delete('/api/activities', {params: {
+		_id : marker._id
+	}});
+};
 
 // Update marker for the specific user
 export const updateMarker = marker => async (dispatch, getState) => {
 	const user = getState().auth.id
 
 	console.log('current marker', marker);
-	console.log('marker info', marker.name);
 
 	// Passes default values and changed has_been value
 
 	const res = await axios.put('/api/activities', {
 		...marker, 
-		_user: user
+		has_been: true
 	});
 
 	console.log('marker res', res.data);
-
-	// Sets the payload to true
-	dispatch({ type: UPDATE_MARKER });
 };
 
 // Shows selected city

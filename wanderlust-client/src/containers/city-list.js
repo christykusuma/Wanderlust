@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Import selectCity function and fetchCity function
-import { selectCity, fetchCities } from '../actions/index';
+import { selectCity, fetchCities, deleteCity } from '../actions/index';
 
 import { bindActionCreators } from 'redux';
 
@@ -14,13 +14,16 @@ class CityList extends Component {
     renderCities() {
         return this.props.cities.map((city) => {
             return (
-                <div className="card blue-grey darken-1" 
-                    key={city.name} 
-                    onClick={() => this.props.selectCity(city)}>
+                <div className="card" 
+                    key={city.name} >
 
-                    <div className="card-content">
+                    <div className="card-content"
+                    onClick={() => this.props.selectCity(city)}>
                         <span className="card-title">{city.name}</span>
                     </div>
+                    <form className="card-action" onSubmit={(event) => this.props.deleteCity(city)}>
+                        <button className="delete-city">DELETE</button>
+                    </form>
                 </div>
             );
         });
@@ -29,7 +32,7 @@ class CityList extends Component {
     render() {
         return (
             <div>
-                <h2>List of cities:</h2>
+                <h4>Saved cities:</h4>
                 {this.renderCities()}
             </div>
         )
@@ -48,6 +51,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators( {
         selectCity: selectCity,
         fetchCities,
+        deleteCity
     }, dispatch);
 }
 

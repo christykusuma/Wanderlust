@@ -1,0 +1,71 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-col {
+    width: 30%;
+    margin: 20px;
+    margin-right: 10px;
+}
+
+.right-col {
+    width: 70%;
+    margin: 20px;
+    margin-left: 10px;
+}
+
+button {
+    background-color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ee6e73;
+}
+
+/* Override materialize-css */
+.card {
+    background-color: #ee6e73;
+}
+
+.card .card-title {
+    font-size: 1.5em;
+}
+
+.card .card-content {
+    padding-bottom: 0px;
+}
+
+.card .card-action {
+    background-color: lightpink;
+    text-align: right;
+}
+
+/* Marker list cards */
+
+.marker-list .card-title {
+    font-size: 1em;
+}
+
+.marker-list .card-content {
+    background-color: white;
+    padding-bottom: 4px;
+    border-bottom: solid 4px lightpink;
+}
+
+.marker-list .card-action {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.marker-list button {
+    padding: 5px 9px;
+}
+
+.marker-list .card-action .marker-form {
+    display: inline;
+}

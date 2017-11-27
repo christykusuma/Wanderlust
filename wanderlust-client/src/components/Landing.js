@@ -6,7 +6,7 @@ const Landing = () => {
             <h1>
                 WanderLust
             </h1>
-            Collect locations from your users
+            <h6>Helps you keep track of all the places you've explored.</h6>
         </div>
     );
 };

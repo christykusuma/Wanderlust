@@ -26,19 +26,22 @@ module.exports = (app) => {
         res.send(markers);
     });
 
+    app.delete('/api/activities', requireLogin, async (req, res) => {
+        console.log('req received', req.query);
+        const marker = await Marker.findById( req.query._id );
+
+        marker.remove();
+    });
+
     app.put('/api/activities/', requireLogin, async (req, res) => {
         // Find the marker
-        let marker = await Marker.findById({ _id: req.body.id});
+        console.log('req received', req.body);
+        let marker = await Marker.findById(req.body._id);
 
-        // Save into database
-        marker.has_been = true;
+        console.log('marker: ', marker)
+
+        // Change has_been and save
+        marker.has_been = req.body.has_been;
         marker.save();
-
-        // const markers = await Marker.
-        // updateOne({
-        //     _id: markerId
-        // }, {
-        //     $set: { 'has_been': true }
-        // }).exec();
     });
 };

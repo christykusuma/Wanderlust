@@ -2,24 +2,42 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Import action functions
-import { fetchMarkers, updateMarker } from '../actions/index';
+import { fetchMarkers, updateMarker, deleteMarker } from '../actions/index';
 
 import { bindActionCreators } from 'redux';
 
-// NEED TO PUT UPDATE MARKER BUTTON
 class MarkerList extends Component {
+	constructor(props) {
+        super(props)
+        
+    // Bind function
+    this.dist = this.dist.bind(this);
+    }
+    
     componentDidMount() {
         this.props.fetchMarkers();
     }
 
+    // Function to calculate distance between markers
+    dist = ( city, marker ) => {
+        return Math.sqrt(Math.pow(city.lat - marker.latLng.lat, 2) + Math.pow(city.lng - marker.latLng.lng, 2))
+      }
+
     renderMarkers() {
-        return this.props.markers.map((marker) => {
+        return this.props.markers.sort((a,b) => this.dist( this.props.latLng, a) - this.dist( this.props.latLng, b)).map((marker) => {
             return (
-                <div key={marker.name}>
+                <div className="card marker-list" key={marker.name}>
                     <div className="card-content">
                         <span className="card-title">{marker.name}</span>
                     </div>
-                    <button onClick={() => this.props.updateMarker(marker)}>Update</button>
+                    <div className="card-action">
+                        <form className="marker-form" onSubmit={(event) => this.props.updateMarker(marker)}>
+                            <button>DONE</button>
+                        </form>
+                        <form className="marker-form" onSubmit={(event) => this.props.deleteMarker(marker)}>
+                            <button>DELETE</button>
+                        </form>
+                    </div>
                 </div>
             );
         });
@@ -28,7 +46,6 @@ class MarkerList extends Component {
     render() {
         return (
             <div>
-                <h2>List of activities:</h2>
                 {this.renderMarkers()}
             </div>
         )
@@ -46,7 +63,8 @@ function mapDispatchToProps(dispatch) {
     // Whenever selectCity is called, result should be passed to all of our reducers
     return bindActionCreators( {
         fetchMarkers,
-        updateMarker
+        updateMarker,
+        deleteMarker
     }, dispatch);
 }
 

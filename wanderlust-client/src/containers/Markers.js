@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Marker } from "react-google-maps";
+import { Marker, InfoWindow } from "react-google-maps";
 
 import { connect } from 'react-redux';
 
@@ -7,6 +7,10 @@ import { fetchMarkers } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 class Markers extends Component {
+  constructor(props) {
+    super(props)
+  }
+  
   // Fetches markers from database
   componentDidMount() {
     this.props.fetchMarkers();
@@ -33,7 +37,13 @@ class Markers extends Component {
                 key={marker.name}
                 position={marker.latLng}
                 icon={this.markerIcon(marker.has_been)}
-            />
+                onClick={this.props.onToggleOpen}
+            >
+            {this.props.isOpen && 
+            <InfoWindow onCloseClick={this.props.onToggleOpen}>
+               <p>{marker.name}</p>
+            </InfoWindow>}
+            </Marker>
         );
     });
   }
