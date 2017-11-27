@@ -12,17 +12,19 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "concurrently": "^3.5.1",
     "create-react-app": "^1.4.3",
     "materialize-css": "^0.100.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-geolocated": "^2.2.1",
-    "react-google-maps": "^9.2.2",
+    "react-google-maps": "^9.4.1",
     "react-places-autocomplete": "^5.4.3",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
+    "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
