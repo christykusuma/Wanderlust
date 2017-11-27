@@ -4,7 +4,7 @@ import { SELECTED_CITY } from '../actions/types';
 export default function(state = null, action) {
     switch(action.type) {
         case SELECTED_CITY:
-            console.log(action.payload);
+            console.log('city selected', action.payload);
             return action.payload;
     }
     return state;

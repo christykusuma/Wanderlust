@@ -1,9 +1,12 @@
 import axios from 'axios';
+
+// Calls all the dispatch function types
 import { 
 	FETCH_USER, 
-	SELECTED_CITY, 
 	FETCH_CITIES, 
-	FETCH_MARKERS 
+	FETCH_MARKERS,
+	SELECTED_CITY, 
+	UPDATE_MARKER
 } from './types';
 
 // Will automatically call dispatch function
@@ -26,6 +29,17 @@ export const fetchCities = () => async dispatch => {
 	dispatch({ type: FETCH_CITIES, payload: res.data});
 };
 
+// Fetches marker data 
+export const fetchMarkers = () => async dispatch => {
+	const res = await axios.get('/api/activities');
+
+	console.log('all the markers', res);
+
+	dispatch({ type: FETCH_MARKERS, payload: res.data});
+};
+
+// Fetches information from Google API
+
 // Submits city for the specific user
 export const submitCity = city => async (dispatch, getState) => {
 	const user = getState().auth.id
@@ -34,15 +48,14 @@ export const submitCity = city => async (dispatch, getState) => {
 		_user: user 
 	});
 
+	console.log('submitted city', res);
+
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-// Fetches marker data 
-export const fetchMarkers= () => async dispatch => {
-	const res = await axios.get('/api/activities');
+// Update city for the specific user
 
-	dispatch({ type: FETCH_MARKERS, payload: res.data});
-};
+// Delete city for the specific user
 
 // Submits marker for the specific user
 export const submitMarker = marker => async (dispatch, getState) => {
@@ -52,15 +65,44 @@ export const submitMarker = marker => async (dispatch, getState) => {
 		_user: user 
 	});
 
-	console.log(res);
-
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-// Fetches city from reducers
+// // Delete marker for the specific user
+// export const deleteMarker = marker => async (dispatch) => {
+// 	const res = await axios.delete('/api/activities', {
+// 		...marker, 
+// 	});
+
+// 	dispatch({ type: FETCH_USER, payload: res.data });
+// };
+
+// Update marker for the specific user
+export const updateMarker = marker => async (dispatch, getState) => {
+	const user = getState().auth.id
+
+	console.log('current marker', marker);
+	console.log('marker info', marker.name);
+
+	// Passes default values and changed has_been value
+
+	const res = await axios.put('/api/activities', {
+		...marker, 
+		_user: user
+	});
+
+	console.log('marker res', res.data);
+
+	// Sets the payload to true
+	dispatch({ type: UPDATE_MARKER });
+};
+
+// Shows selected city
 export function selectCity(city) {
 	return {
 		type: SELECTED_CITY,
 		payload: city
 	};
 };
+
+// Shows selected marker

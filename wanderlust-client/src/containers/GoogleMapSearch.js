@@ -15,13 +15,12 @@ class GoogleMapSearch extends Component {
 		super(props)
 
 		// Initial state is New York
-		// this.handleFormSubmit = this.handleFormSubmit.bind(this);
-
 		this.state = { 
 			address: 'New York, NY',
 			latLng: {lat: 40.7127753, lng: -74.0059728}
 		}
 
+		// Binds functions to the class component
 		this.handleAddressSubmit = this.handleAddressSubmit.bind(this);
 		this.handleCitySubmit = this.handleCitySubmit.bind(this);
 		this.handleMarkerSubmit = this.handleMarkerSubmit.bind(this);
@@ -40,8 +39,6 @@ class GoogleMapSearch extends Component {
 			.then(results => getLatLng(results[0]))
 			.then(latLng => this.setState({latLng}))
 			.catch(error => console.error(error))
-
-		console.log('Success', this.state.latLng);
 	}
 
 	// Submit city to database - calls action creator
@@ -101,8 +98,11 @@ class GoogleMapSearch extends Component {
 	}
 }
 
+// Binds the dispatch functions from actions index
+// Call using this.props.[function name]
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ submitCity, submitMarker }, dispatch);
 }
-  
+
+// Connects mapDispatchToProps to the class component
 export default connect(null, mapDispatchToProps)(GoogleMapSearch);

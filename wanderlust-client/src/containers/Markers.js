@@ -12,6 +12,19 @@ class Markers extends Component {
     this.props.fetchMarkers();
   }
 
+  // Change icon depending on whether true or false
+  markerIcon(icon) {
+    if (icon) {
+      return (
+        "/true.png"
+      );
+    } else {
+        return (
+          "/false.png"
+        );
+    }
+  }
+
   // render all the markers
   renderMarkers() {
     return this.props.markers.map((marker) => {
@@ -19,6 +32,7 @@ class Markers extends Component {
             <Marker 
                 key={marker.name}
                 position={marker.latLng}
+                icon={this.markerIcon(marker.has_been)}
             />
         );
     });

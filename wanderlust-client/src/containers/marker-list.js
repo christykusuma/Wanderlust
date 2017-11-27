@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Import action functions
-import { fetchMarkers } from '../actions/index';
+import { fetchMarkers, updateMarker } from '../actions/index';
 
 import { bindActionCreators } from 'redux';
 
+// NEED TO PUT UPDATE MARKER BUTTON
 class MarkerList extends Component {
     componentDidMount() {
         this.props.fetchMarkers();
@@ -14,12 +15,11 @@ class MarkerList extends Component {
     renderMarkers() {
         return this.props.markers.map((marker) => {
             return (
-                <div className="card blue-grey darken-1" 
-                    key={marker.name}>
-
+                <div key={marker.name}>
                     <div className="card-content">
                         <span className="card-title">{marker.name}</span>
                     </div>
+                    <button onClick={() => this.props.updateMarker(marker)}>Update</button>
                 </div>
             );
         });
@@ -46,9 +46,10 @@ function mapDispatchToProps(dispatch) {
     // Whenever selectCity is called, result should be passed to all of our reducers
     return bindActionCreators( {
         fetchMarkers,
+        updateMarker
     }, dispatch);
 }
 
 // Promote MarkerList from a component to a container - it needs to know about this new dispatch method, selectCity. Make it available as a prop.
 // export default connect(mapStateToProps, mapDispatchToProps)(CityList);
-export default connect(mapStateToProps, mapDispatchToProps )(MarkerList);
+export default connect(mapStateToProps, mapDispatchToProps)(MarkerList);

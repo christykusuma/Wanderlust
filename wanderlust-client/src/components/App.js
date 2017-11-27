@@ -8,7 +8,6 @@ import GoogleMapSearch from '../containers/GoogleMapSearch';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Activities from './Activities';
-// const SurveyNew = () => <h2>SurveyNew</h2>
 
 // Holds all the other components
 class App extends Component {
@@ -18,7 +17,6 @@ class App extends Component {
 
 	render () {
 		return ( 
-		<div className="container">
 			<BrowserRouter>
 				<div className="container">
 					<Header />
@@ -26,10 +24,8 @@ class App extends Component {
 					<Route exact path="/search" component={GoogleMapSearch} />
 					<Route exact path="/dashboard" component={Dashboard} />
 					<Route exact path="/activities" component={Activities} />
-
 				</div>
 			</BrowserRouter>
-		</div>
 		);
 	}
 };
