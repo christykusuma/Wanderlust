@@ -23,6 +23,11 @@ nav {
     padding: auto 20px;
 }
 
+p.info-window {
+    text-align: center;
+    width: 130px;
+}
+
 /* WHITE: DAECF3 */
 /* blue: #1AA6B7 darkblue: #022D41 */
 /* 

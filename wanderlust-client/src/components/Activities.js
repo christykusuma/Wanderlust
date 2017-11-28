@@ -10,7 +10,6 @@ class Activities extends Component {
 
 		return (
 			<div>
-				<MarkerList />
 			</div>
 		);
 	}

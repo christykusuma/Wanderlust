@@ -15,6 +15,8 @@ class Dashboard extends Component {
 				<div className="right-col">
 					<CityDetail />
 				</div>
+				<div>
+				</div>
 			</div>
 		);
 	}

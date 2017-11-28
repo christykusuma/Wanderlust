@@ -2,14 +2,13 @@ import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import citiesReducer from './citiesReducer';
 import markersReducer from './markersReducer';
-// import infoReducer from './infoReducer';
 
-import ActiveCity from './activeCityReducer';
-// import ActiveMarker from './activeMarkerReducer';
+import searchMarkerReducer from './searchReducer';
+
+import ActiveCity from './activeReducer';
 
 import CityReducer from './cityReducer';
 // import updateCityReducer from './cityReducer';
-// import deleteCityReducer from './cityReducer';
 
 import MarkerReducer from './markerReducer';
 
@@ -18,11 +17,9 @@ export default combineReducers({
 	auth: authReducer,
 	cities: citiesReducer,
 	markers: markersReducer,
-	// info: infoReducer,
+	activeSearch: searchMarkerReducer,
 	activeCity: ActiveCity,
-	// activeMarker: ActiveMarker,
 	city: CityReducer,
 	// updateCity: updateCityReducer,
-	// deleteCity: deleteCityReducer,
 	marker: MarkerReducer, 
 });

@@ -49,7 +49,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     // Whenever selectCity is called, result should be passed to all of our reducers
     return bindActionCreators( {
-        selectCity: selectCity,
+        selectCity,
         fetchCities,
         deleteCity
     }, dispatch);

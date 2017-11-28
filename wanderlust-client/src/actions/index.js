@@ -5,7 +5,9 @@ import {
 	FETCH_USER, 
 	FETCH_CITIES, 
 	FETCH_MARKERS,
-	SELECTED_CITY
+	SEARCH_MARKER,
+	SELECTED_CITY,
+	SELECTED_MARKER
 } from './types';
 
 // Will automatically call dispatch function
@@ -30,6 +32,25 @@ export const fetchCities = () => async dispatch => {
 	dispatch({ type: FETCH_CITIES, payload: res.data});
 };
 
+// Fetches marker search data and passes coodrinates into params
+export const searchMarker = marker => async dispatch => {
+
+	console.log('current search marker', marker);
+
+	// Creates a GET request to route and passes parameters
+	const res = await axios.get('/api/current_marker', {
+		params: {
+			name: marker.name,
+			lat: marker.latLng.lat,
+			lng: marker.latLng.lng
+		}
+	});
+
+	console.log('related businesses', res.data);
+
+	dispatch({ type: SEARCH_MARKER, payload: res.data});
+};
+
 // Fetches marker data 
 export const fetchMarkers = () => async dispatch => {
 	const res = await axios.get('/api/activities');
@@ -38,8 +59,6 @@ export const fetchMarkers = () => async dispatch => {
 
 	dispatch({ type: FETCH_MARKERS, payload: res.data});
 };
-
-// Fetches information from Google API
 
 // Submits city for the specific user
 export const submitCity = city => async (dispatch, getState) => {
@@ -84,6 +103,8 @@ export const deleteMarker = marker => async (dispatch) => {
 	const res = await axios.delete('/api/activities', {params: {
 		_id : marker._id
 	}});
+
+	console.log('deleted marker', res);
 };
 
 // Update marker for the specific user
@@ -111,3 +132,9 @@ export function selectCity(city) {
 };
 
 // Shows selected marker
+export function selectMarker(marker) {
+	return {
+		type: SELECTED_MARKER,
+		payload: marker
+	};
+};

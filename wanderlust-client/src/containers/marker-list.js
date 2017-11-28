@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Import action functions
-import { fetchMarkers, updateMarker, deleteMarker } from '../actions/index';
+import { fetchMarkers, updateMarker, deleteMarker, selectMarker, searchMarker } from '../actions/index';
 
 import { bindActionCreators } from 'redux';
+
+import SearchDetail from './search-detail';
 
 class MarkerList extends Component {
 	constructor(props) {
@@ -27,10 +29,11 @@ class MarkerList extends Component {
         return this.props.markers.sort((a,b) => this.dist( this.props.latLng, a) - this.dist( this.props.latLng, b)).map((marker) => {
             return (
                 <div className="card marker-list" key={marker.name}>
-                    <div className="card-content">
+                    <div className="card-content" onClick={() => this.props.selectMarker(marker)}>
                         <span className="card-title">{marker.name}</span>
                     </div>
                     <div className="card-action">
+                        <button onClick={() => this.props.searchMarker(marker)}>LOOK UP</button>
                         <form className="marker-form" onSubmit={(event) => this.props.updateMarker(marker)}>
                             <button>DONE</button>
                         </form>
@@ -46,6 +49,7 @@ class MarkerList extends Component {
     render() {
         return (
             <div>
+                <div><SearchDetail/></div>
                 {this.renderMarkers()}
             </div>
         )
@@ -62,6 +66,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     // Whenever selectCity is called, result should be passed to all of our reducers
     return bindActionCreators( {
+        selectMarker,
+        searchMarker,
         fetchMarkers,
         updateMarker,
         deleteMarker

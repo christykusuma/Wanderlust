@@ -28,14 +28,5 @@ const MapMarkers = compose(
   </GoogleMap>
 );
 
-// withScriptjs(withGoogleMap(props =>
-//   <GoogleMap
-//     zoom={15}
-//     center={props.latLng}
-//   >
-//   < Markers />
-//   </GoogleMap>
-// ));
-
 export default MapMarkers;
 

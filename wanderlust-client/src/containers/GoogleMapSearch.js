@@ -44,7 +44,9 @@ class GoogleMapSearch extends Component {
 	}
 
 	// Submit city to database - calls action creator
-	handleCitySubmit(event) {
+	handleCitySubmit = (event) => {
+		event.preventDefault()
+
 		this.props.submitCity({
 			name: this.state.address,
 			lat: this.state.latLng.lat,
@@ -53,7 +55,9 @@ class GoogleMapSearch extends Component {
 	}
 
 	// Submit marker to database - calls action creator
-	handleMarkerSubmit(event) {
+	handleMarkerSubmit = (event) => {
+		event.preventDefault()
+		
 		this.props.submitMarker({
 			name: this.state.address,
 			lat: this.state.latLng.lat,

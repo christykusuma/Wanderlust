@@ -39,10 +39,10 @@ class Markers extends Component {
                 icon={this.markerIcon(marker.has_been)}
                 onClick={this.props.onToggleOpen}
             >
-            {this.props.isOpen && 
-            <InfoWindow onCloseClick={this.props.onToggleOpen}>
-               <p>{marker.name}</p>
-            </InfoWindow>}
+              {this.props.isOpen && 
+              <InfoWindow onCloseClick={this.props.onToggleOpen}>
+                <p className="info-window">{marker.name}</p>
+              </InfoWindow>}
             </Marker>
         );
     });
