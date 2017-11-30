@@ -24,30 +24,28 @@ module.exports = (app) => {
 
         // Access token response
         app.get(`/oauth/access_token?client_id=${keys.facebookClientID}&client_secret=${keys.facebookClientSecret}&grant_type=client_credentials`, (req, res) => {
-
-            console.log('nested request for token', req);
             
+                console.log('nested request for token', req);
+                
+    
+                const es = new EventSearch();
+                
+                        // event search response
+                        es.search({
+                            "lat": req.body.latLng.lat,
+                            "lng": req.body.latLng.lng,
+                            // "accessToken": accessToken
+                            "accessToken": req
+                            }).then(function (events) {
+                                console.log(JSON.stringify(events));
+                            }).catch(function (error) {
+                                console.error(JSON.stringify(error));
+                            });  
+    
+                res.send(req);
 
-            // const es = new EventSearch();
-            
-            //         // event search response
-            //         es.search({
-            //             "lat": req.body.latLng.lat,
-            //             "lng": req.body.latLng.lng,
-            //             // "accessToken": accessToken
-            //             "accessToken": req
-            //            }).then(function (events) {
-            //               console.log(JSON.stringify(events));
-            //            }).catch(function (error) {
-            //               console.error(JSON.stringify(error));
-            //            });  
-
-            res.send(req);
         });
-
-
-
-    });          
+    });   
 };
 
 

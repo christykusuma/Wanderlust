@@ -30,7 +30,6 @@ module.exports = (app) => {
         res.send(req.user);
     });
 
-
     // Redirect the user to Facebook for authentication.  When complete,
     // Facebook will redirect the user back to the application at
     //     /auth/facebook/callback
@@ -42,9 +41,10 @@ module.exports = (app) => {
     // authentication has failed.
     app.get(
         '/auth/facebook/callback', 
-        passport.authenticate('facebook'),
-        (req, res) => {
-            res.redirect('/events');
-        }
+        passport.authenticate('facebook')
+        // (req, res) => {
+        //     res.redirect('/events');
+        // }
     );
+
 };

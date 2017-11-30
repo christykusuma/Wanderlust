@@ -54,9 +54,14 @@ passport.use(
 		proxy: true
 	  },
 
-	  async (accessToken, refreshToken, profile, done) => {
+	  accessToken => {
 		  console.log(accessToken);
-		  console.log(profile);
+	  }
+	)
+
+	//   async (accessToken, refreshToken, profile, done) => {
+	// 	  console.log(accessToken);
+	// 	  console.log(profile);
 		// const existingUser = await User.findOne({ googleID: profile.id })
 	
 			// if (existingUser) {
@@ -72,10 +77,10 @@ passport.use(
 			// 	done(null, user);	
 			// }
 
-			User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-				return cb(err, user);
-			});
-		})
+		// 	User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+		// 		return cb(err, user);
+		// 	});
+		// })
 );
 
 
