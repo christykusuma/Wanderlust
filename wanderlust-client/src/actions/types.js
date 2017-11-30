@@ -4,7 +4,9 @@ export const FETCH_USER = 'fetch_user';
 export const FETCH_CITIES = 'fetch_cities';
 export const FETCH_MARKERS = 'fetch_markers';
 
+// For the yelp search
 export const SEARCH_MARKER = 'search_marker';
+export const SEARCH_EVENTS = 'search-events';
 
 export const SELECTED_CITY = 'SELECTED_CITY';
 export const SELECTED_MARKER = 'SELECTED_MARKER';

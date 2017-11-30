@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 
 import MapMarkers from '../components/MapMarkers';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { geolocated, geoPropTypes } from 'react-geolocated';
+// import { geolocated, geoPropTypes } from 'react-geolocated';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import Geolocation from "react-geolocation";
 
 import '../css/search.css';
 
@@ -19,7 +21,7 @@ class GoogleMapSearch extends Component {
 		// Initial state is New York
 		this.state = { 
 			address: 'New York, NY',
-			latLng: {lat: 40.7127753, lng: -74.0059728}
+			latLng: {lat: 40.7127753, lng: -74.0059728},
 		}
 
 		// Binds functions to the class component
@@ -64,6 +66,20 @@ class GoogleMapSearch extends Component {
 			lng: this.state.latLng.lng
 		});
 	}
+	
+	getCurrentPosition() {
+	  return (
+		<Geolocation
+		  onSuccess={console.log}
+		  render={({
+			fetchingPosition,
+			position: { coords: { latitude, longitude } = {} } = {},
+			error,
+			getCurrentPosition
+		  }) => {getCurrentPosition}}
+		/>
+	  );
+	};
 
 	render() {
 
@@ -72,9 +88,11 @@ class GoogleMapSearch extends Component {
 			value: this.state.address,
 			onChange: this.onChange,
 		}
+		// const {coords: {latitude, longitude}} = this.props.location;
 
 		return (
 			<div>
+				{this.getCurrentPosition()}
 				<form onSubmit={this.handleAddressSubmit}>
 					<table>
 						<tr className="search-bar">

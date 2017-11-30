@@ -7,9 +7,13 @@ import { fetchMarkers } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 class Markers extends Component {
-  constructor(props) {
-    super(props)
-  }
+	constructor(props) {
+		super(props)
+
+		// Initial state is New York
+		this.state = { 
+		}
+	}
   
   // Fetches markers from database
   componentDidMount() {
@@ -34,13 +38,15 @@ class Markers extends Component {
     return this.props.markers.map((marker) => {
         return (
             <Marker 
+                id={marker.name}
                 key={marker.name}
                 position={marker.latLng}
                 icon={this.markerIcon(marker.has_been)}
                 onClick={this.props.onToggleOpen}
             >
               {this.props.isOpen && 
-              <InfoWindow onCloseClick={this.props.onToggleOpen}>
+              <InfoWindow 
+                onCloseClick={this.props.onToggleOpen}>
                 <p className="info-window">{marker.name}</p>
               </InfoWindow>}
             </Marker>
@@ -69,63 +75,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps )(Markers);
-
-// {this.renderMarkers()}
-// {console.log("city", this.props.googleMapURL)}
-// {console.log("city", this.props.latLng)}
-
-// {marker.name}
-// {marker.latLng.lat}
-// {marker.latLng.lng}
-
-    //   return this.props.markers.map((marker) => {
-    //       return (
-    //           <Marker 
-    //               position={marker.latLng}
-    //           />
-    //       );
-    //   });
-    // withScriptjs(withGoogleMap(props => <GoogleMap
-    //     zoom={15}
-    //     center={this.props.latLng}  
-    // >
-    //     <Marker
-    //         position={{ lat: -34.397, lng: 150.644 }}
-    //     />
-    // </GoogleMap>));
-
-// class MapMarkers extends Component {
-// 	constructor(props) {
-//     super(props)
-
-//     this.renderMarkers = this.renderMarkers.bind(this);
-//   }
-
-//   componentDidMount() {
-//     this.props.fetchMarkers();
-//   }
-
-//   // render all the markers
-//   renderMarkers() {
-//       return (
-//         withScriptjs(withGoogleMap(props => <GoogleMap
-//             zoom={15}
-//             center={{ lat: -34.397, lng: 150.644 }}  
-//         >
-//             <Marker
-//                 position={{ lat: -34.397, lng: 150.644 }}
-//             />
-//         </GoogleMap>))
-//       );
-//   }
-
-//   // render google map
-//   render() {
-//       return (
-//         <div>
-//             {this.renderMarkers()}
-//         </div>
-//       );
-//   }
-// }
-

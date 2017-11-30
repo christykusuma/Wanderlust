@@ -8,7 +8,18 @@ class CityDetail extends Component {
 
     render() {
         if (!this.props.city) {
-            return <h4>Select a city to get started...</h4>
+            return (
+                <div>
+                    <h4>Select a city to get started...</h4>
+                    <MapMarkers
+                        latLng={{ lat: 40.7127753, lng: -74.0059728 }}
+                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
+                        loadingElement={<div style={{ height: `100%` }} />}
+                        containerElement={<div style={{ height: `400px` }} />}
+                        mapElement={<div style={{ height: `100%` }} />}
+                    />
+                </div>
+            );
         }
         return (
             <div>
@@ -20,6 +31,7 @@ class CityDetail extends Component {
 				    containerElement={<div style={{ height: `400px` }} />}
 				    mapElement={<div style={{ height: `100%` }} />}
 				/>
+                <br/>
                 <MarkerList 
                     latLng={this.props.city.latLng}
                 />

@@ -3,15 +3,24 @@ body {
 }
 
 .btn {
-    background-color: #ee6e73;
+    background-color: #38254f;
 }
 
 .btn:hover {
-    background-color: lightpink;
+    background-color: #4e2f62;
 }
 
 nav .nav-wrapper {
     padding-right: 20px;
+    background-color: #38254f;
+}
+
+.card a {
+    color: #38254f; 
+}
+
+.card a:hover {
+    color: #4e2f62;
 }
 
 nav .nav-wrapper .brand-logo {
@@ -28,8 +37,17 @@ p.info-window {
     width: 130px;
 }
 
-/* WHITE: DAECF3 */
-/* blue: #1AA6B7 darkblue: #022D41 */
-/* 
-GREEN: 7B895B
-MUSTARD: BEA42E */
+/* Modal design */
+.dashboard .left-col div.backdrop {
+    border-radius: 0;
+    position: absolute;
+    top: 150px;
+    right: 20px;
+    margin-left: 20px;
+    width: 66.5%;
+    height: 410px;
+    background-color: #876d98;
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+}

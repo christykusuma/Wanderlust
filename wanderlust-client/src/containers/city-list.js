@@ -5,11 +5,24 @@ import { connect } from 'react-redux';
 import { selectCity, fetchCities, deleteCity } from '../actions/index';
 
 import { bindActionCreators } from 'redux';
+import Modal from '../components/Modal';
 
 class CityList extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = { isOpen: false };
+      }
+
     componentDidMount() {
         this.props.fetchCities();
     }
+
+    toggleModal = () => {
+        this.setState({
+          isOpen: !this.state.isOpen
+        });
+      }
 
     renderCities() {
         return this.props.cities.map((city) => {
@@ -21,9 +34,12 @@ class CityList extends Component {
                     onClick={() => this.props.selectCity(city)}>
                         <span className="card-title">{city.name}</span>
                     </div>
-                    <form className="card-action" onSubmit={(event) => this.props.deleteCity(city)}>
-                        <button className="delete-city">DELETE</button>
-                    </form>
+                    <div className="card-action city-buttons" >
+                        <button className="update-city" onClick={this.toggleModal}>UPDATE</button>            
+                        <form className="city-button" onSubmit={(event) => this.props.deleteCity(city)}>
+                            <button className="delete-city">DELETE</button>
+                        </form>
+                    </div>
                 </div>
             );
         });
@@ -32,6 +48,10 @@ class CityList extends Component {
     render() {
         return (
             <div>
+                <Modal 
+                    show={this.state.isOpen}
+                    onClose={this.toggleModal}
+                />
                 <h4>Saved cities:</h4>
                 {this.renderCities()}
             </div>

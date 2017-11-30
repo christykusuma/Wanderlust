@@ -52,6 +52,9 @@ require('./routes/markerRoutes')(app);
 // Require yelp routes
 require('./routes/yelpRoutes')(app);
 
+// Require facebook routes
+require('./routes/facebookRoutes')(app);
+
 // Dynamic port binding
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

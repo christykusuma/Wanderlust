@@ -5,6 +5,7 @@ export default function(state = null, action) {
         case SEARCH_MARKER:
             console.log('search marker reducer', action.payload.businesses);
             return action.payload.businesses;
+        default:
+			return state;
     }
-    return state;
 }

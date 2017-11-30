@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Import action functions
-import { fetchMarkers, updateMarker, deleteMarker, selectMarker, searchMarker } from '../actions/index';
+import { fetchMarkers, updateMarker, undoMarker, deleteMarker, selectMarker } from '../actions/index';
 
 import { bindActionCreators } from 'redux';
-
-import SearchDetail from './search-detail';
 
 class MarkerList extends Component {
 	constructor(props) {
@@ -25,31 +23,50 @@ class MarkerList extends Component {
         return Math.sqrt(Math.pow(city.lat - marker.latLng.lat, 2) + Math.pow(city.lng - marker.latLng.lng, 2))
       }
 
+    // function to show done marker button
+    handleMarkerDone = (marker) => {
+        if (marker.has_been === false) {
+            return (
+                <form className="marker-form" onSubmit={(event) => this.props.updateMarker(marker)}>
+                    <button>DONE</button>
+                </form>
+            );
+        } else {
+            return (
+                <form className="marker-form" onSubmit={(event) => this.props.undoMarker(marker)}>
+                    <button>UNDO</button>
+                </form>
+            );          
+        }
+    } 
+
     renderMarkers() {
-        return this.props.markers.sort((a,b) => this.dist( this.props.latLng, a) - this.dist( this.props.latLng, b)).map((marker) => {
+        return this.props.markers
+            .filter( marker => this.dist( this.props.latLng, marker) < 3.3 )
+            .sort((a,b) => this.dist( this.props.latLng, a) - this.dist( this.props.latLng, b))
+            .map((marker) => {
+            if (marker.has_been === true) {
             return (
                 <div className="card marker-list" key={marker.name}>
                     <div className="card-content" onClick={() => this.props.selectMarker(marker)}>
                         <span className="card-title">{marker.name}</span>
                     </div>
                     <div className="card-action">
-                        <button onClick={() => this.props.searchMarker(marker)}>LOOK UP</button>
-                        <form className="marker-form" onSubmit={(event) => this.props.updateMarker(marker)}>
-                            <button>DONE</button>
-                        </form>
+                        <a href={`/markers/${marker._id}`}>SEARCH</a>
+                        {this.handleMarkerDone(marker)}
                         <form className="marker-form" onSubmit={(event) => this.props.deleteMarker(marker)}>
                             <button>DELETE</button>
                         </form>
                     </div>
                 </div>
             );
+        }
         });
     }
 
     render() {
         return (
             <div>
-                <div><SearchDetail/></div>
                 {this.renderMarkers()}
             </div>
         )
@@ -67,9 +84,9 @@ function mapDispatchToProps(dispatch) {
     // Whenever selectCity is called, result should be passed to all of our reducers
     return bindActionCreators( {
         selectMarker,
-        searchMarker,
         fetchMarkers,
         updateMarker,
+        undoMarker,
         deleteMarker
     }, dispatch);
 }

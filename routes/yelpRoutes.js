@@ -4,33 +4,37 @@ const keys = require('../config/keys');
 // Require login to add new marker
 const requireLogin = require('../config/middlewares/requireLogin');
 
+const mongoose = require('mongoose');
+
+// Require the marker model
+const Marker = mongoose.model('markers');
+
 // Yelp keys
 const clientID = keys.yelpClientID;
 const clientSecret = keys.yelpClientSecret;
 
-console.log(clientID, clientSecret, 'HI');
-
 module.exports = (app) => {
 
-    // Grab yelp search get request
-    app.get('/api/current_marker', requireLogin, async (req, res) => {
-        console.log('marker search req received', req.query);
+    app.get('/api/markers/:id', requireLogin, async (req, res) => {
+        // Grabs marker from database
+        const marker = await Marker.findById( req.params.id );
 
-    yelp.accessToken(clientID, clientSecret).then(response => {
-        const client = yelp.client(response.jsonBody.access_token);
-      
-        // Yelp search and send back response
-        client.search({
-            term: req.query.name,
-            latitude: req.query.lat,
-            longitude: req.query.lng
-        }).then(response => {
-          console.log(response.jsonBody);
-          res.send(response.jsonBody)
-        });
-      }).catch(e => {
-        console.log(e);
-      });
+        console.log('YELP YAY', marker);
 
-    });
-};
+        // Uses information to do the yelp search
+        yelp.accessToken(clientID, clientSecret).then(response => {
+            const client = yelp.client(response.jsonBody.access_token);
+          
+            // Yelp search and send back response
+            client.search({
+                term: marker.name,
+                location: marker.name,
+            }).then(response => {
+              console.log(response.jsonBody);
+              res.send(response.jsonBody)
+            });
+          }).catch(e => {
+            console.log(e);
+          });
+    });          
+}

@@ -6,8 +6,9 @@ import {
 	FETCH_CITIES, 
 	FETCH_MARKERS,
 	SEARCH_MARKER,
+	SEARCH_EVENTS,
 	SELECTED_CITY,
-	SELECTED_MARKER
+	SELECTED_MARKER,
 } from './types';
 
 // Will automatically call dispatch function
@@ -32,23 +33,26 @@ export const fetchCities = () => async dispatch => {
 	dispatch({ type: FETCH_CITIES, payload: res.data});
 };
 
-// Fetches marker search data and passes coodrinates into params
-export const searchMarker = marker => async dispatch => {
+// Grabs id from marker, then goes into backend to do database grab + yelp search
+export const searchMarker = params_id => async dispatch => {
+	const res = await axios.get('/api/markers/'+params_id);
+	
+		console.log('all the search results', res.data);
+	
+		dispatch({ type: SEARCH_MARKER, payload: res.data});
+};
 
-	console.log('current search marker', marker);
+// Search events (only non-get can pass on params)
+export const searchEvents = city => async dispatch => {
+	console.log('search events for this city:', city);
 
-	// Creates a GET request to route and passes parameters
-	const res = await axios.get('/api/current_marker', {
-		params: {
-			name: marker.name,
-			lat: marker.latLng.lat,
-			lng: marker.latLng.lng
-		}
+	const res = await axios.post('/api/events', {
+		...city
 	});
-
-	console.log('related businesses', res.data);
-
-	dispatch({ type: SEARCH_MARKER, payload: res.data});
+	
+	console.log('all the event search results', res.data);
+	
+	dispatch({ type: SEARCH_EVENTS, payload: res.data});
 };
 
 // Fetches marker data 
@@ -109,7 +113,6 @@ export const deleteMarker = marker => async (dispatch) => {
 
 // Update marker for the specific user
 export const updateMarker = marker => async (dispatch, getState) => {
-	const user = getState().auth.id
 
 	console.log('current marker', marker);
 
@@ -122,6 +125,21 @@ export const updateMarker = marker => async (dispatch, getState) => {
 
 	console.log('marker res', res.data);
 };
+
+// Undo update marker for the specific user
+export const undoMarker = marker => async (dispatch, getState) => {
+	
+		console.log('current marker', marker);
+	
+		// Passes default values and changed has_been value
+	
+		const res = await axios.put('/api/activities/undo', {
+			...marker, 
+			has_been: false
+		});
+	
+		console.log('marker res', res.data);
+	};
 
 // Shows selected city
 export function selectCity(city) {

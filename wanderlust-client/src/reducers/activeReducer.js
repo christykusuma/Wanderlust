@@ -9,6 +9,7 @@ export default function(state = null, action) {
         case SELECTED_MARKER:
             console.log('marker selected', action.payload);
             return action.payload;
+        default:
+			return state;
     }
-    return state;
 }

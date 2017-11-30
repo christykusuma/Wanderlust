@@ -7,18 +7,21 @@ class Header extends Component {
 		if (this.props.auth) {
 			return (
 				<div>
+					<li><a href ="/events">Newsfeed</a></li>
 					<li><a href ="/dashboard">Dashboard</a></li>
-					<li><a href ="/activities">Wishlist</a></li>
-					<li><a href ="#">Welcome, {this.props.auth.fname} {this.props.auth.lname}.</a></li>
+					<li><a href ="/activities">Activities</a></li>
+					<li><a href ="/">Welcome, {this.props.auth.fname} {this.props.auth.lname}.</a></li>
 					<li><a href ="/api/logout">Logout</a></li>
 				</div>
 			);
 		} else {
 			return (
-				<li><a href ="/auth/google">Login with Google</a></li>
+				<div>
+					<li><a href ="/auth/google">Login with Google</a></li>
+					<li><a href ="/auth/facebook">Login with Facebook</a></li>
+				</div>
 			);
 		}
-		
 	}
 
 	render() {

@@ -6,5 +6,7 @@ module.exports = {
     cookieKey: 'randomCookie',
     googleAPIKey: 'AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk',
     yelpClientID: 'jG9l60uTh4M9qZw_FpbH2w',
-    yelpClientSecret: '6gYAYRQrRENBFG0vAfob2I6tlqxtmGISS2y6TA7hobwJavOQ9JjPgghESBd67E7K'
+    yelpClientSecret: '6gYAYRQrRENBFG0vAfob2I6tlqxtmGISS2y6TA7hobwJavOQ9JjPgghESBd67E7K',
+    facebookClientID: '127937881236844',
+    facebookClientSecret: '5815dfc0d89a111510d470b965eb82cd'
 };

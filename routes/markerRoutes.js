@@ -44,4 +44,16 @@ module.exports = (app) => {
         marker.has_been = req.body.has_been;
         marker.save();
     });
+
+    app.put('/api/activities/undo', requireLogin, async (req, res) => {
+        // Find the marker
+        console.log('req received', req.body);
+        let marker = await Marker.findById(req.body._id);
+
+        console.log('marker: ', marker)
+
+        // Change has_been and save
+        marker.has_been = req.body.has_been;
+        marker.save();
+    });
 };

@@ -10,6 +10,8 @@ import GoogleMapSearch from '../containers/GoogleMapSearch';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Activities from './Activities';
+import MarkerSearch from './MarkerSearch';
+import Events from './Events';
 
 // Holds all the other components
 class App extends Component {
@@ -23,9 +25,11 @@ class App extends Component {
 				<div>
 					<Header />
 					<Route exact path="/" component={Landing} />
+					<Route exact path="/events" component={Events} />
 					<Route exact path="/search" component={GoogleMapSearch} />
 					<Route exact path="/dashboard" component={Dashboard} />
 					<Route exact path="/activities" component={Activities} />
+					<Route exact path="/markers/:id" component={MarkerSearch}/>
 				</div>
 			</BrowserRouter>
 		);
