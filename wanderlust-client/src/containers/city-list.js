@@ -62,7 +62,9 @@ class CityList extends Component {
 // Cities has to match reducers index name
 // Changes reducer states to props for react to use
 function mapStateToProps(state) {
-    return { cities: state.cities };
+    return { 
+        cities: state.cities 
+    };
 }
 
 // Anything returned from this function will end up as props on the CityList container

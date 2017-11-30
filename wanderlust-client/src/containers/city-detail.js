@@ -5,8 +5,12 @@ import MapMarkers from '../components/MapMarkers';
 import MarkerList from './marker-list';
 
 class CityDetail extends Component {
+	constructor(props) {
+		super(props)
+    }
 
     render() {
+        // If there is no active city
         if (!this.props.city) {
             return (
                 <div>
@@ -21,6 +25,8 @@ class CityDetail extends Component {
                 </div>
             );
         }
+
+        // If there is an active city
         return (
             <div>
                 <h4>{this.props.city.name}</h4>

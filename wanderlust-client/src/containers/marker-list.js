@@ -21,19 +21,25 @@ class MarkerList extends Component {
     // Function to calculate distance between markers
     dist = ( city, marker ) => {
         return Math.sqrt(Math.pow(city.lat - marker.latLng.lat, 2) + Math.pow(city.lng - marker.latLng.lng, 2))
-      }
+    }
 
     // function to show done marker button
     handleMarkerDone = (marker) => {
         if (marker.has_been === false) {
             return (
-                <form className="marker-form" onSubmit={(event) => this.props.updateMarker(marker)}>
+                <form className="marker-form" onSubmit={(event) => {
+                    event.preventDefault();
+                    this.props.updateMarker(marker);
+                }}>
                     <button>DONE</button>
                 </form>
             );
         } else {
             return (
-                <form className="marker-form" onSubmit={(event) => this.props.undoMarker(marker)}>
+                <form className="marker-form" onSubmit={(event) => {
+                    event.preventDefault();
+                    this.props.undoMarker(marker);
+                }}>
                     <button>UNDO</button>
                 </form>
             );          
@@ -54,7 +60,10 @@ class MarkerList extends Component {
                     <div className="card-action">
                         <a href={`/markers/${marker._id}`}>SEARCH</a>
                         {this.handleMarkerDone(marker)}
-                        <form className="marker-form" onSubmit={(event) => this.props.deleteMarker(marker)}>
+                        <form className="marker-form" onSubmit={(event) => {
+                            event.preventDefault();
+                            this.props.deleteMarker(marker);
+                        }}>
                             <button>DELETE</button>
                         </form>
                     </div>

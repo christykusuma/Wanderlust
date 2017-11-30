@@ -13,7 +13,7 @@ export default function(state = [], action) {
                     has_been: marker.has_been,
                     _id: marker._id
                 }
-            }); 
+            });
 		default:
 			return state;
     }

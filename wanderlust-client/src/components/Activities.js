@@ -31,12 +31,24 @@ class Activities extends Component {
     // function to show done marker button
     handleMarkerDone = (marker) => {
         if (marker.has_been === false) {
-        return (
-            <form className="marker-form" onSubmit={(event) => this.props.updateMarker(marker)}>
-                <button>DONE</button>
-            </form>
-        );
-		}
+            return (
+                <form className="marker-form" onSubmit={(event) => {
+                    event.preventDefault();
+                    this.props.updateMarker(marker);
+                }}>
+                    <button>DONE</button>
+                </form>
+            );
+        } else {
+            return (
+                <form className="marker-form" onSubmit={(event) => {
+                    event.preventDefault();
+                    this.props.undoMarker(marker);
+                }}>
+                    <button>UNDO</button>
+                </form>
+            );          
+        }
     } 
 
 	markerListRender() {
@@ -53,7 +65,10 @@ class Activities extends Component {
                     <div className="card-action">
                         <a href={`/markers/${marker._id}`}>SEARCH</a>
                         {this.handleMarkerDone(marker)}
-                        <form className="marker-form" onSubmit={(event) => this.props.deleteMarker(marker)}>
+                        <form className="marker-form" onSubmit={(event) => {
+                            event.preventDefault();
+                            this.props.deleteMarker(marker);
+                        }}>
                             <button>DELETE</button>
                         </form>
                     </div>

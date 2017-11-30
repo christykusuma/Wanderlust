@@ -55,7 +55,7 @@ passport.use(
 	  },
 
 	  accessToken => {
-		  console.log(accessToken);
+		  console.log('access token is:', accessToken);
 	  }
 	)
 
