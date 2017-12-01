@@ -30,14 +30,22 @@ class CityList extends Component {
                 <div className="card" 
                     key={city.name} >
 
-                    <div className="card-content"
-                    onClick={() => this.props.selectCity(city)}>
+                    <div className="card-content">
                         <span className="card-title">{city.name}</span>
                     </div>
                     <div className="card-action city-buttons" >
-                        <button className="update-city" onClick={this.toggleModal}>UPDATE</button>            
-                        <form className="city-button" onSubmit={(event) => this.props.deleteCity(city)}>
-                            <button className="delete-city">DELETE</button>
+                        <form className="active-city" onSubmit={(event) => {
+                                event.preventDefault();
+                                this.props.selectCity(city);
+                            }}>      
+                                <button className="active-city city-button">SELECT</button>
+                        </form>
+                        <button className="update-city city-button" onClick={this.toggleModal}>UPDATE</button>    
+                        <form className="delete-city" onSubmit={(event) => {
+                            event.preventDefault();
+                            this.props.deleteCity(city);
+                         }}>      
+                            <button className="delete-city city-button">DELETE</button>
                         </form>
                     </div>
                 </div>

@@ -13,6 +13,8 @@ import Activities from './Activities';
 import MarkerSearch from './MarkerSearch';
 import Events from './Events';
 
+import '../css/app.css';
+
 // Holds all the other components
 class App extends Component {
 	componentDidMount() {

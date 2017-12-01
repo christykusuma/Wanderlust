@@ -10,6 +10,8 @@ class Dashboard extends Component {
 	render() {
 
 		return (
+			<div>
+				<h3 className="page-title">Favorite Places</h3>
 			<div className="dashboard">
 				<div className="left-col"><CityList /></div>
 				<div className="right-col">
@@ -17,6 +19,7 @@ class Dashboard extends Component {
 				</div>
 				<div>
 				</div>
+			</div>
 			</div>
 		);
 	}

@@ -92,23 +92,25 @@ class GoogleMapSearch extends Component {
 
 		return (
 			<div>
-				{this.getCurrentPosition()}
-				<form onSubmit={this.handleAddressSubmit}>
-					<table>
-						<tr className="search-bar">
-							<td><PlacesAutocomplete className="input-field" inputProps={inputProps} /></td>
-							<td><button className="btn add-address waves-effect waves-light" type="submit">Submit</button></td>
-						</tr>
-					</table>
-				</form>
+				<div className="search-container">
+					{this.getCurrentPosition()}
+					<form onSubmit={this.handleAddressSubmit}>
+						<table>
+							<tr className="search-bar">
+								<td><PlacesAutocomplete className="input-field" inputProps={inputProps} /></td>
+								<td><button className="btn add-address waves-effect waves-light" type="submit">Submit</button></td>
+							</tr>
+						</table>
+					</form>
 
-				<form onSubmit={this.handleCitySubmit}>
-					<button type="submit" className="btn add-city waves-effect waves-light" >Add City</button>
-				</form>
+					<form className="add-form" onSubmit={this.handleCitySubmit}>
+						<button type="submit" className="btn add-city waves-effect waves-light" >Add City</button>
+					</form>
 
-				<form onSubmit={this.handleMarkerSubmit}>
-					<button type="submit" className="btn add-marker waves-effect waves-light" >Add Marker</button>
-				</form>
+					<form  className="add-form" onSubmit={this.handleMarkerSubmit}>
+						<button type="submit" className="btn add-marker waves-effect waves-light" >Add Marker</button>
+					</form>
+				</div>
 
 				<MapMarkers 
 					latLng={this.state.latLng}
@@ -117,6 +119,28 @@ class GoogleMapSearch extends Component {
 				  	containerElement={<div style={{ height: `735px` }} />}
 				  	mapElement={<div style={{ height: `100%`}} />}
 				/>
+				<div className="owl-map">
+					<div className='owl'>
+					<div className='body'>
+						<div className='wing'></div>
+						<div className='wing'></div>
+						<div className='feet'></div>
+						<div className='feet right'></div>
+						<div className='feather'></div>
+					</div>
+					<div className='head'>
+						<div className='eyes'>
+						<div className='beak'></div>
+						<div className='eye'>
+							<div className='pupil'></div>
+						</div>
+						<div className='eye'>
+							<div className='pupil'></div>
+						</div>
+						</div>
+					</div>
+					</div>
+				</div>				
 			</div>
 		);
 	}

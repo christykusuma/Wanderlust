@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { fetchMarkers, updateMarker, deleteMarker, selectMarker } from '../actions/index';
 
 import CityList from '../containers/city-list';
-
+import CityDetail from '../containers/city-detail';
 import MapMarkers from '../components/MapMarkers';
 
 import '../css/dashboard.css';
@@ -14,14 +14,29 @@ import '../css/dashboard.css';
 class Activities extends Component {
 	constructor(props) {
         super(props)
+
+    // Determines which section is shown
+    this.state = {
+        isHiddenNot: true,
+        isHiddenHas: false
+    }
         
     // Bind function
     this.dist = this.dist.bind(this);
-	}
+    this.toggleHidden = this.toggleHidden.bind(this);
+    }
 
 	componentDidMount() {
         this.props.fetchMarkers();
     }
+
+    // Function to determine if toggle is hidden or shown
+    toggleHidden = () => {
+        this.setState({
+          isHiddenNot: !this.state.isHiddenNot,
+          isHiddenHas: !this.state.isHiddenHas
+        });
+      }
 
 	// Function to calculate distance between markers
 	dist = ( city, marker ) => {
@@ -104,21 +119,32 @@ class Activities extends Component {
 				    mapElement={<div style={{ height: `100%` }} />}
 				/>
                 <br/>
-                {this.markerListRender()}
+                <div className="been-buttons">
+                    <button onClick={this.toggleHidden}>Visited</button>
+                    <button onClick={this.toggleHidden}>Unvisited</button>
+                </div>
+                <div className="has_been">
+                    {this.state.isHiddenHas && this.markerListRender()}
+                </div>
             </div>
         );
 	}
 	
 	render() {
 		return (
+            <div>
 			<div className="dashboard">
 				<div className="left-col"><CityList /></div>
 				<div className="right-col">
-					{this.cityDetailRender()}
+                        {this.cityDetailRender()}
+                    <div className="has_not_been">
+                        {this.state.isHiddenNot && <CityDetail/>}
+                    </div>
 				</div>
 				<div>
 				</div>
 			</div>
+            </div>
 		);
 	}
 }

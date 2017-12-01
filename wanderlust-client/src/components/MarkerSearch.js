@@ -49,7 +49,7 @@ class MarkerSearch extends Component {
             return <h5></h5>
         }
         return (
-            <div>
+            <div className="marker-search">
                 <h3>Search Results</h3>
                 {this.renderBusinesses()}
             </div>

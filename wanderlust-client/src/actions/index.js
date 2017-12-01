@@ -87,11 +87,16 @@ export const deleteCity = city => async (dispatch) => {
 
 	console.log('current city', city);
 
-	const res = await axios.delete('/api/dashboard', {params: {
+	axios.delete('/api/dashboard', {params: {
 		_id : city._id
 	}});
 
-	console.log('deleted city', res);
+	// Fetches new cities
+	const res = await axios.get('/api/dashboard');
+	
+	console.log('all the cities', res);
+
+	dispatch({ type: FETCH_CITIES, payload: res.data});
 };
 
 // Submits marker for the specific user

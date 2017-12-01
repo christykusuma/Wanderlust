@@ -1,18 +1,20 @@
-.search-bar {
-    background-color: rgba(255, 255, 255, 0.8);
-    position: fixed;
-    top: 250px;
-    left: 270px;
+.search-container {
     width: 600px;
+    display: relative;
+    position: fixed;
+    z-index: 2;
+    margin: auto 30%;
+    margin-top: 250px;
+}
+
+.search-bar {
+    background-color: rgba(255, 255, 255, 1); 
+    width: 800px;
     z-index: 2;
 }
 
-.search-bar {
-    padding-left: 130px;
-}
-
 .search-bar td {
-    padding-left: 30px;
+    padding-left: 80px;
 }
 
 .google-map {
@@ -20,26 +22,21 @@
     top: 0px;
 }
 
-.btn {
-    position: fixed;
-    top: 500px;
+.add-form {
+    display: inline-block;
 }
 
 .add-address {
-    position: absolute;
-    top: 35px;
+    color: #0a0a0a;
 }
-
 .add-marker {
-    position: fixed;
-    top: 367px;
     width: 297px;
-    left: 270px;
+    margin-left: 3px;
+    color: #0a0a0a;
 }
 
 .add-city {
-    position: fixed;
-    top: 367px; 
-    left: 573px; 
     width: 297px;
+    margin-right: 3px;
+    color: #0a0a0a;
 }
