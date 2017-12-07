@@ -1,3 +1,4 @@
+/* Bookmark page */
 .dashboard {
     display: flex;
     flex-direction: row;
@@ -56,7 +57,6 @@ button:hover {
 }
 
 /* Marker list cards */
-
 .marker-list .card-title {
     font-size: 1em;
     color: #0a0a0a;
@@ -86,7 +86,6 @@ button:hover {
 }
 
 /* City list */
-
 .city-buttons {
     display: flex;
     flex-direction: row;
@@ -97,7 +96,7 @@ button:hover {
     margin: auto 5px;
 }
 
-/* Activities been buttons */
+/* Activities has-been buttons */
 .been-buttons button {
     background-color: #0a0a0a;
     color: #ebd858;

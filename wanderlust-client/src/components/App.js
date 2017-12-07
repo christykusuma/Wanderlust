@@ -6,12 +6,10 @@ import * as actions from '../actions';
 import '../css/app.css';
 
 import Header from './Header';
-import GoogleMapSearch from '../containers/GoogleMapSearch';
+import Explore from './Explore';
 import Landing from './Landing';
-import Dashboard from './Dashboard';
 import Activities from './Activities';
 import MarkerSearch from './MarkerSearch';
-import Events from './Events';
 
 import '../css/app.css';
 
@@ -27,9 +25,7 @@ class App extends Component {
 				<div>
 					<Header />
 					<Route exact path="/" component={Landing} />
-					<Route exact path="/events" component={Events} />
-					<Route exact path="/search" component={GoogleMapSearch} />
-					<Route exact path="/dashboard" component={Dashboard} />
+					<Route exact path="/search" component={Explore} />
 					<Route exact path="/activities" component={Activities} />
 					<Route exact path="/markers/:id" component={MarkerSearch}/>
 				</div>

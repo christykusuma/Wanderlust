@@ -1,6 +1,7 @@
+// Explore page
 import React, { Component } from 'react'
 
-import MapMarkers from '../components/MapMarkers';
+import MapMarkers from '../containers/MapMarkers';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 // import { geolocated, geoPropTypes } from 'react-geolocated';
 
@@ -9,12 +10,13 @@ import { bindActionCreators } from 'redux';
 
 import Geolocation from "react-geolocation";
 
-import '../css/search.css';
+import '../css/owl.css';
+import '../css/explore.css';
 
 // Import action functions
 import { submitCity, submitMarker } from '../actions/index';
 
-class GoogleMapSearch extends Component {
+class Explore extends Component {
 	constructor(props) {
 		super(props)
 
@@ -110,23 +112,12 @@ class GoogleMapSearch extends Component {
 					<form  className="add-form" onSubmit={this.handleMarkerSubmit}>
 						<button type="submit" className="btn add-marker waves-effect waves-light" >Add Marker</button>
 					</form>
-				</div>
-
-				<MapMarkers 
-					latLng={this.state.latLng}
-				  	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
-				  	loadingElement={<div style={{ height: `100%` }} />}
-				  	containerElement={<div style={{ height: `735px` }} />}
-				  	mapElement={<div style={{ height: `100%`}} />}
-				/>
-				<div className="owl-map">
+					
+					<div className="owl-map">
 					<div className='owl'>
 					<div className='body'>
 						<div className='wing'></div>
 						<div className='wing'></div>
-						<div className='feet'></div>
-						<div className='feet right'></div>
-						<div className='feather'></div>
 					</div>
 					<div className='head'>
 						<div className='eyes'>
@@ -140,7 +131,16 @@ class GoogleMapSearch extends Component {
 						</div>
 					</div>
 					</div>
-				</div>				
+				</div>
+				</div>
+
+				<MapMarkers 
+					latLng={this.state.latLng}
+				  	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSX39_1W3g7CZeeUxtomW6QePOAXzePk"
+				  	loadingElement={<div style={{ height: `100%` }} />}
+				  	containerElement={<div style={{ height: `735px` }} />}
+				  	mapElement={<div style={{ height: `100%`}} />}
+				/>				
 			</div>
 		);
 	}
@@ -153,4 +153,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 // Connects mapDispatchToProps to the class component
-export default connect(null, mapDispatchToProps)(GoogleMapSearch);
+export default connect(null, mapDispatchToProps)(Explore);

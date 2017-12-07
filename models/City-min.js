@@ -1,0 +1,1 @@
+const mongoose=require("mongoose"),Schema=mongoose.Schema,citySchema=new Schema({name:String,lat:Number,lng:Number,_user:{type:Schema.Types.ObjectId,ref:"User"}});mongoose.model("cities",citySchema);

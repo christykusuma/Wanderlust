@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import MapMarkers from '../components/MapMarkers';
+import MapMarkers from '../containers/MapMarkers';
 import MarkerList from './marker-list';
 
 // Handles recent places

@@ -1,3 +1,4 @@
+// Users
 const mongoose = require('mongoose');
 // Can be const { Schema } = mongoose;
 const Schema = mongoose.Schema;

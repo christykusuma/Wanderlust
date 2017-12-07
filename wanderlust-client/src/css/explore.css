@@ -1,16 +1,17 @@
+/* Explore page */
 .search-container {
     width: 600px;
-    display: relative;
     position: fixed;
     z-index: 2;
-    margin: auto 30%;
-    margin-top: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
 
 .search-bar {
     background-color: rgba(255, 255, 255, 1); 
     width: 800px;
-    z-index: 2;
+    z-index: -2;
 }
 
 .search-bar td {
@@ -39,4 +40,8 @@
     width: 297px;
     margin-right: 3px;
     color: #0a0a0a;
+}
+
+#PlacesAutocomplete__root {
+    z-index: 3;
 }

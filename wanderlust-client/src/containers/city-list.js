@@ -40,7 +40,7 @@ class CityList extends Component {
                             }}>      
                                 <button className="active-city city-button">SELECT</button>
                         </form>
-                        <button className="update-city city-button" onClick={this.toggleModal}>UPDATE</button>    
+                        <button className="update-city city-button">UPDATE</button>    
                         <form className="delete-city" onSubmit={(event) => {
                             event.preventDefault();
                             this.props.deleteCity(city);

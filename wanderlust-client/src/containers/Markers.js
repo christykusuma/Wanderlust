@@ -24,11 +24,11 @@ class Markers extends Component {
   markerIcon(icon) {
     if (icon) {
       return (
-        "/true.png"
+        "/true-brown.png"
       );
     } else {
         return (
-          "/false.png"
+          "/false-brown.png"
         );
     }
   }

@@ -8,7 +8,6 @@ class Header extends Component {
 			return (
 				<div>
 					<li><a href ="/search">Explore</a></li>
-					<li><a href ="/events">Upcoming Events</a></li>
 					<li><a href ="/activities">Bookmarks</a></li>
 					<li><a href ="/">Welcome, {this.props.auth.fname} {this.props.auth.lname}.</a></li>
 					<li><a href ="/api/logout">Logout</a></li>
@@ -17,8 +16,7 @@ class Header extends Component {
 		} else {
 			return (
 				<div>
-					<li><a href ="/auth/google">Login with Google</a></li>
-					<li><a href ="/auth/facebook">Login with Facebook</a></li>
+					<li><a href ="/auth/google">Login with Google</a></li> 
 				</div>
 			);
 		}
@@ -28,7 +26,7 @@ class Header extends Component {
 		console.log('user information', this.props);
 		return (
 			<nav>
-				<div className="nav-wrapper">
+				<div class="navbar-wrapper">
 					<Link 
 						to={this.props.auth ? '/search' : '/'} 
 						className="left brand-logo"

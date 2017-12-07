@@ -7,9 +7,9 @@ import { fetchMarkers, updateMarker, deleteMarker, selectMarker } from '../actio
 
 import CityList from '../containers/city-list';
 import CityDetail from '../containers/city-detail';
-import MapMarkers from '../components/MapMarkers';
+import MapMarkers from '../containers/MapMarkers';
 
-import '../css/dashboard.css';
+import '../css/bookmark.css';
 
 class Activities extends Component {
 	constructor(props) {

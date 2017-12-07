@@ -1,11 +1,15 @@
+/* small explore page owl */
 .owl-map .owl {
     position: absolute;
-    margin: -590px auto 0;
-    margin-left: 45%;
-    margin-right: 30%;
     width: 200px;
+    top: -118px;
+    left: 65%;
+    z-index: 3;
   }
-  .owl-map .pupil {
+  .owl-map .head:hover {
+    top: -118px;    
+  }
+  .owl-map .owl .pupil {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -14,7 +18,7 @@
     border-radius: 25px;
     background: #000;
   }
-  .owl-map .pupil::after {
+  .owl-map .owl .pupil::after {
     position: absolute;
     top: 0;
     right: 0;
@@ -37,7 +41,6 @@
   }
   .owl-map .eye:nth-child(2){
     left:98px;
-    z-index: 5;
   }
   .owl-map .eyes {
     position: absolute;
@@ -47,7 +50,6 @@
     height: 110px;
     border-radius: 55px;
     background: #fef79f;
-    z-index: 5;
   }
   .owl-map .eyes::before {
     position: absolute;
@@ -59,9 +61,9 @@
     background: #fef79f;
     content: '';
   }
-  .owl-map .beak {
+  .owl-map .owl .beak {
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     top: 60px;
     left: 49px;
     display: block;
@@ -78,7 +80,6 @@
     height: 80px;
     border-radius: 80px / 40px;
     background: #ebdd4c;
-    z-index: 3;
   }
   .owl-map .head::before {
     position: absolute;
@@ -97,7 +98,6 @@
     position: absolute;
     top: 0;
     right: 18px;
-    z-index:-1;
     display: block;
     width: 0;
     height: 0; 
@@ -113,7 +113,6 @@
     width: 160px;
     height: 100px;
     border-radius: 80px / 50px;
-    background: #98e0f8;
   }
   .owl-map .wing {
     position: absolute;
@@ -126,6 +125,7 @@
     -webkit-transform-origin: 30px 10px;
     -webkit-transform: rotate(-20deg);
     transition: all 0.5s ease;
+    z-index: 100;
   }
   
   .owl-map .wing:nth-child(2){
@@ -134,79 +134,7 @@
      -webkit-transform-origin: 20px 10px;
     -webkit-transform: rotate(20deg);
   }
-  .owl-map  .feet {
-    position: absolute;
-    bottom: -5px;
-    left: 50px;
-    width: 6px;
-    height: 18px;
-    border-radius: 3px / 9px;
-    background: #ef8e1b;
-    -webkit-transform: rotate(10deg);
-  }
-  .owl-map .feet::before {
-    position: absolute;
-    bottom: 0;
-    left: -6px;
-    display: block;
-    width: 6px;
-    height: 18px;
-    border-radius: 3px / 9px;
-    background: #ef8e1b;
-    content: '';
-  }
-  .owl-map .feet::after {
-    position: absolute;
-    bottom: 0;
-    left: 6px;
-    display: block;
-    width: 6px;
-    height: 18px;
-    border-radius: 3px / 9px;
-    background: #ef8e1b;
-    content: '';
-  }
-  .owl-map .feet.right{
-    left: 104px;
-    -webkit-transform: rotate(-10deg);
-  }
-  .owl-map .feather {
-    position: absolute;
-    top: 65px;
-    left: 72px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid #64c2de; 
-    border-right: 7px solid transparent;
-    border-left: 7px solid transparent; 
-  }
-  .owl-map .feather::before {
-    position: absolute;
-    top: -30px;
-    left: -20px;
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 10px solid #64c2de; 
-    border-right: 7px solid transparent;
-    border-left: 7px solid transparent;
-    content: ''; 
-    -webkit-transform: rotate(5deg);
-  }
-  .owl-map .feather::after {
-    position: absolute;
-    top: -30px;
-    left: 7px;
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 10px solid #64c2de; 
-    border-right: 7px solid transparent;
-    border-left: 7px solid transparent;
-    content: ''; 
-    -webkit-transform: rotate(-5deg);
-  }
-  
+
   .owl-map .owl .wing {
     -webkit-transform: rotate(90deg);
     z-index: 3;
