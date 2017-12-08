@@ -3,7 +3,7 @@
     width: 600px;
     position: fixed;
     z-index: 2;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, 0%);
 }
@@ -31,14 +31,16 @@
     color: #0a0a0a;
 }
 .add-marker {
-    width: 297px;
-    margin-left: 3px;
+    width: 298px;
+    margin-top: 2px;
+    margin-left: 2px;
     color: #0a0a0a;
 }
 
 .add-city {
-    width: 297px;
-    margin-right: 3px;
+    width: 298px;
+    margin-top: 2px;
+    margin-right: 1px;
     color: #0a0a0a;
 }
 

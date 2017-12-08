@@ -9,7 +9,7 @@ class Header extends Component {
 				<div>
 					<li><a href ="/search">Explore</a></li>
 					<li><a href ="/activities">Bookmarks</a></li>
-					<li><a href ="/">Welcome, {this.props.auth.fname} {this.props.auth.lname}.</a></li>
+					<li className="welcome-name">Welcome, {this.props.auth.fname} {this.props.auth.lname}.</li>
 					<li><a href ="/api/logout">Logout</a></li>
 				</div>
 			);
@@ -31,7 +31,7 @@ class Header extends Component {
 						to={this.props.auth ? '/search' : '/'} 
 						className="left brand-logo"
 					>
-						WanderLust
+						Wanderlust
 					</Link>
 					<ul className="right">
 						{this.renderContent()}

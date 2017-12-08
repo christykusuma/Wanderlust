@@ -60,7 +60,7 @@ class Activities extends Component {
                     event.preventDefault();
                     this.props.undoMarker(marker);
                 }}>
-                    <button>UNDO</button>
+                    <button>UNDONE</button>
                 </form>
             );          
         }

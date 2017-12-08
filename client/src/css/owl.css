@@ -3,12 +3,10 @@
     position: absolute;
     width: 200px;
     top: -118px;
-    left: 65%;
+    left: 37%;
     z-index: 3;
   }
-  .owl-map .head:hover {
-    top: -118px;    
-  }
+
   .owl-map .owl .pupil {
     position: absolute;
     top: 20px;
@@ -54,7 +52,6 @@
   .owl-map .eyes::before {
     position: absolute;
     left: 88px;
-    display: block;
     width: 110px;
     height: 110px;
     border-radius: 55px;
@@ -66,7 +63,6 @@
     z-index: 5;
     top: 60px;
     left: 49px;
-    display: block;
     width: 0;
     height: 0;
     border-top: 60px solid #ef8e1b; 
@@ -78,6 +74,7 @@
     position: absolute;
     width: 160px;
     height: 80px;
+    top: 5px;
     border-radius: 80px / 40px;
     background: #ebdd4c;
   }
@@ -85,7 +82,6 @@
     position: absolute;
     top: 0px;
     left: 15px;
-    display: block;
     width: 0;
     height: 0; 
     border-right: 15px solid transparent;
@@ -141,7 +137,4 @@
   }
   .owl-map .owl .wing:nth-child(2) {
     -webkit-transform: rotate(-90deg);
-  }
-  .owl-map .owl .head {
-    top: 5px;
   }
