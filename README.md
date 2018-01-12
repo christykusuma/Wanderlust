@@ -1,3 +1,55 @@
+# Wanderlust
+
+This app is a location-based tracker for travelers having a hard time remembering places they have been to and places they want to go. It's nice to see it visually on a map, so that you can plan your visits accordingly by area. You can also save as many cities as you want and Yelp search the places you've saved.
+
+Feel free to play around with the <a href="https://wanderlust-map.herokuapp.com/">demo</a>.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+Create a dev.js file inside the config folder and add all your keys inside, like this:
+
+```
+module.exports = {
+    googleClientID: '[YOUR_CLIENT_ID_HERE]',
+    googleClientSecret: '[YOUR_CLIENT_SECRET_HERE]',
+    mongoURI: '[YOUR_MONGO_URI_HERE]',
+    cookieKey: 'randomCookie',
+    googleAPIKey: '[YOUR_API_KEY_HERE]',
+    yelpClientID: '[YOUR_CLIENT_ID_HERE]',
+    yelpClientSecret: '[YOUR_CLIENT_SECRET_HERE]',
+    facebookClientID: '[YOUR_CLIENT_ID_HERE]',
+    facebookClientSecret: '[YOUR_CLIENT_SECRET_HERE]'
+};
+```
+
+* You would need to register for a Google API Key for the maps, Google Authentication and the Google Search autocomplete features.
+* You would need to register for a MongoDB uri and account for the database.
+* You would need to register for a Yelp API key for all the yelp searches.
+* Facebook Authentication is still in the process, but you would need to register for a Facebook API Key for that as well.
+
+## Built With
+
+* [React/Redux](https://github.com/facebookincubator/create-react-app) - Used for content
+* CSS - Used for styling
+* [MongoDB mLab](https://mlab.com/) - Database used for development
+* [Google Maps API](https://developers.google.com/maps/documentation/javascript/) - API used for maps and markers
+* [Passport](http://www.passportjs.org/) - Used for Google and Facebook Authentication 
+* [Yelp](https://www.yelp.com/developers) - API used for Yelp business place searches
+
+## Authors
+
+* **Christy Kusuma** - [ChristyKusuma](https://github.com/christykusuma)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Create React App Information
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
