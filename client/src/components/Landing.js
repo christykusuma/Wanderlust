@@ -18,7 +18,7 @@ const Landing = () => {
                   <img className="right-wing" src="left-wing-yellow.png"/>
                   <img className="left-wing" src="right-wing-yellow.png"/>
                 </div>
-                <p className="tagline">Wanderlust helps you keep track of all your favorite places around the world and create a wishlist of places to go!</p>
+                <p className="tagline">Keep track of all your favorite places</p>
               </div>
         </div>
     );
